@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ActividadCuentaDeBancoVitoTramontini.Excepciones;
+
 
 namespace ActividadCuentaDeBancoVitoTramontini.Modelos
 {
@@ -16,12 +18,16 @@ namespace ActividadCuentaDeBancoVitoTramontini.Modelos
 
         public override void Retirar(double monto)
         {
+            if(monto <= 0)
+            {
+                throw new DatosInvalidosExcepcion("Error: Debe ingresar un monto mayor a cero para retirar");
+            }
             if (Saldo + maxSobregiro < monto)
             {
-                throw new Exception($"Fondos insuficientes.Esta cuenta corriente permite un sobregiro máximo de ${maxSobregiro}");
+                throw new FondosInsuficientesExcepcion($"Fondos insuficientes.Esta cuenta corriente permite un sobregiro máximo de ${maxSobregiro}");
             }
 
-            base.Retirar(monto);
+            saldo = saldo - monto;
 
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ActividadCuentaDeBancoVitoTramontini.Excepciones;
 
 namespace ActividadCuentaDeBancoVitoTramontini.Modelos
 {
@@ -20,7 +21,7 @@ namespace ActividadCuentaDeBancoVitoTramontini.Modelos
         {
             if(retirosMesActual >= 3)
             {
-                throw new Exception("Se alcanzo el límite máximo de 3 retiros mensuales.");
+                throw new LimiteDeRetirosExcedidoExcepcion("Se alcanzo el límite máximo de 3 retiros mensuales.");
             }
 
             base.Retirar(monto);
